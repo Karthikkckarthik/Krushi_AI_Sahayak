@@ -1,4 +1,4 @@
-# Kisan AI Sahayak 🌾
+# Krushi AI Sahayak 🌾
 
 > Voice-first AI agricultural assistant for Indian smallholder farmers via WhatsApp
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Kisan AI Sahayak is a serverless, multimodal AI system that provides agricultural assistance to 146 million Indian smallholder farmers through WhatsApp. The platform offers:
+Krushi AI Sahayak is a serverless, multimodal AI system that provides agricultural assistance to 146 million Indian smallholder farmers through WhatsApp. The platform offers:
 
 - 🔍 **Crop Disease Detection** - AI-powered image analysis for Tomato, Wheat, and Rice
 - 💰 **Market Intelligence** - Real-time mandi prices and selling recommendations
@@ -20,17 +20,17 @@ Kisan AI Sahayak is a serverless, multimodal AI system that provides agricultura
 ## Architecture
 
 ```
-Farmer (WhatsApp) → Twilio → API Gateway → Lambda Orchestrator
-                                              ↓
-                    ┌─────────────────────────┼─────────────────────────┐
-                    ↓                         ↓                         ↓
-              Amazon Transcribe        Amazon Bedrock            Amazon Polly
-              (Voice → Text)      (Claude Sonnet 4 AI)        (Text → Voice)
-                                              ↓
-                    ┌─────────────────────────┼─────────────────────────┐
-                    ↓                         ↓                         ↓
-              DynamoDB                       S3                   External APIs
-           (Farmer Profiles)           (Crop Images)            (e-NAM, Weather)
+Farmer (WhatsApp) → API Gateway → Lambda Orchestrator
+                                        ↓
+              ┌─────────────────────────┼─────────────────────────┐
+              ↓                         ↓                         ↓
+        Amazon Transcribe        Amazon Bedrock            Amazon Polly
+        (Voice → Text)      (Claude Sonnet 4 AI)        (Text → Voice)
+                                        ↓
+              ┌─────────────────────────┼─────────────────────────┐
+              ↓                         ↓                         ↓
+        DynamoDB                       S3                   External APIs
+     (Farmer Profiles)           (Crop Images)            (e-NAM, Weather)
 ```
 
 ### Core AWS Services
@@ -41,7 +41,7 @@ Farmer (WhatsApp) → Twilio → API Gateway → Lambda Orchestrator
 - **DynamoDB** - Farmer profiles, conversation history, disease records
 - **S3** - Crop image storage with lifecycle policies
 - **Lambda** - Serverless orchestration (Python 3.11)
-- **API Gateway** - REST API for Twilio webhooks
+- **API Gateway** - REST API for WhatsApp webhooks
 
 ## Features
 
@@ -97,7 +97,7 @@ Farmer (WhatsApp) → Twilio → API Gateway → Lambda Orchestrator
 ### Prerequisites
 
 - AWS Account with Bedrock access
-- Twilio WhatsApp Business API account
+- WhatsApp Business API account
 - Python 3.11+
 - AWS CLI configured
 
@@ -106,9 +106,9 @@ Farmer (WhatsApp) → Twilio → API Gateway → Lambda Orchestrator
 ```bash
 BEDROCK_MODEL_ID=anthropic.claude-sonnet-4-20250514
 DYNAMODB_TABLE=FarmerProfiles
-S3_BUCKET=kisan-ai-crop-images-{region}-{account-id}
-TWILIO_AUTH_TOKEN=<your-token>
-TWILIO_ACCOUNT_SID=<your-sid>
+S3_BUCKET=krushi-ai-crop-images-{region}-{account-id}
+WHATSAPP_API_TOKEN=<your-token>
+WHATSAPP_PHONE_NUMBER_ID=<your-phone-number-id>
 ENAM_API_KEY=<government-api-key>
 WEATHER_API_KEY=<weather-api-key>
 ```
@@ -120,17 +120,17 @@ WEATHER_API_KEY=<weather-api-key>
 pip install -r requirements.txt
 
 # Deploy infrastructure
-aws cloudformation deploy --template-file infrastructure.yaml --stack-name kisan-ai-sahayak
+aws cloudformation deploy --template-file infrastructure.yaml --stack-name krushi-ai-sahayak
 
 # Deploy Lambda function
 cd lambda
 zip -r function.zip .
-aws lambda update-function-code --function-name kisan-orchestrator --zip-file fileb://function.zip
+aws lambda update-function-code --function-name krushi-orchestrator --zip-file fileb://function.zip
 ```
 
-### Twilio Webhook Configuration
+### WhatsApp Webhook Configuration
 
-Set webhook URL in Twilio Console:
+Set webhook URL in WhatsApp Business API Console:
 ```
 https://{api-gateway-id}.execute-api.{region}.amazonaws.com/prod/webhook/whatsapp
 ```
@@ -227,7 +227,7 @@ System: [Voice] "Aapke nazdeeki 3 mandi:
 - AES-256 encryption at rest (DynamoDB, S3)
 - TLS 1.2+ for data in transit
 - IAM roles with least privilege
-- Twilio signature validation
+- WhatsApp webhook signature validation
 - No PII in logs
 - 30-day data deletion on request
 
@@ -260,14 +260,14 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 ## Support
 
 - **WhatsApp**: +91-XXXX-XXXXXX
-- **Email**: support@kisanaisahayak.in
-- **Documentation**: [docs.kisanaisahayak.in](https://docs.kisanaisahayak.in)
+- **Email**: support@krushiaisahayak.in
+- **Documentation**: [docs.krushiaisahayak.in](https://docs.krushiaisahayak.in)
 
 ## Acknowledgments
 
 - Government of India e-NAM initiative
 - AWS for Bedrock and AI services
-- Twilio for WhatsApp Business API
+- Meta for WhatsApp Business API
 - Indian Council of Agricultural Research (ICAR) for disease library
 
 ---
