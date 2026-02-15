@@ -1,4 +1,4 @@
-# Kisan AI Sahayak 🌾
+# Krushi AI Sahayak 🌾
 
 > Voice-first AI agricultural assistant for Indian smallholder farmers via WhatsApp
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Kisan AI Sahayak is a serverless, multimodal AI system that provides agricultural assistance to 146 million Indian smallholder farmers through WhatsApp. The platform offers:
+Krushi AI Sahayak is a serverless, multimodal AI system that provides agricultural assistance to 146 million Indian smallholder farmers through WhatsApp. The platform offers:
 
 - 🔍 **Crop Disease Detection** - AI-powered image analysis for Tomato, Wheat, and Rice
 - 💰 **Market Intelligence** - Real-time mandi prices and selling recommendations
@@ -106,7 +106,7 @@ Farmer (WhatsApp) → Twilio → API Gateway → Lambda Orchestrator
 ```bash
 BEDROCK_MODEL_ID=anthropic.claude-sonnet-4-20250514
 DYNAMODB_TABLE=FarmerProfiles
-S3_BUCKET=kisan-ai-crop-images-{region}-{account-id}
+S3_BUCKET=Krushi-ai-crop-images-{region}-{account-id}
 TWILIO_AUTH_TOKEN=<your-token>
 TWILIO_ACCOUNT_SID=<your-sid>
 ENAM_API_KEY=<government-api-key>
@@ -120,12 +120,12 @@ WEATHER_API_KEY=<weather-api-key>
 pip install -r requirements.txt
 
 # Deploy infrastructure
-aws cloudformation deploy --template-file infrastructure.yaml --stack-name kisan-ai-sahayak
+aws cloudformation deploy --template-file infrastructure.yaml --stack-name Krushi-ai-sahayak
 
 # Deploy Lambda function
 cd lambda
 zip -r function.zip .
-aws lambda update-function-code --function-name kisan-orchestrator --zip-file fileb://function.zip
+aws lambda update-function-code --function-name Krushi-orchestrator --zip-file fileb://function.zip
 ```
 
 ### Twilio Webhook Configuration
@@ -260,8 +260,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 ## Support
 
 - **WhatsApp**: +91-XXXX-XXXXXX
-- **Email**: support@kisanaisahayak.in
-- **Documentation**: [docs.kisanaisahayak.in](https://docs.kisanaisahayak.in)
+- **Email**: support@Krushiaisahayak.in
+- **Documentation**: [docs.Krushiaisahayak.in](https://docs.Krushiaisahayak.in)
 
 ## Acknowledgments
 
