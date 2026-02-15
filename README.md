@@ -106,9 +106,9 @@ Farmer (WhatsApp) → API Gateway → Lambda Orchestrator
 ```bash
 BEDROCK_MODEL_ID=anthropic.claude-sonnet-4-20250514
 DYNAMODB_TABLE=FarmerProfiles
-S3_BUCKET=krushi-ai-crop-images-{region}-{account-id}
-WHATSAPP_API_TOKEN=<your-token>
-WHATSAPP_PHONE_NUMBER_ID=<your-phone-number-id>
+S3_BUCKET=kisan-ai-crop-images-{region}-{account-id}
+TWILIO_AUTH_TOKEN=<your-token>
+TWILIO_ACCOUNT_SID=<your-sid>
 ENAM_API_KEY=<government-api-key>
 WEATHER_API_KEY=<weather-api-key>
 ```
@@ -120,12 +120,12 @@ WEATHER_API_KEY=<weather-api-key>
 pip install -r requirements.txt
 
 # Deploy infrastructure
-aws cloudformation deploy --template-file infrastructure.yaml --stack-name krushi-ai-sahayak
+aws cloudformation deploy --template-file infrastructure.yaml --stack-name kisan-ai-sahayak
 
 # Deploy Lambda function
 cd lambda
 zip -r function.zip .
-aws lambda update-function-code --function-name krushi-orchestrator --zip-file fileb://function.zip
+aws lambda update-function-code --function-name kisan-orchestrator --zip-file fileb://function.zip
 ```
 
 ### WhatsApp Webhook Configuration
@@ -260,8 +260,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 ## Support
 
 - **WhatsApp**: +91-XXXX-XXXXXX
-- **Email**: support@krushiaisahayak.in
-- **Documentation**: [docs.krushiaisahayak.in](https://docs.krushiaisahayak.in)
+- **Email**: support@kisanaisahayak.in
+- **Documentation**: [docs.kisanaisahayak.in](https://docs.kisanaisahayak.in)
 
 ## Acknowledgments
 
